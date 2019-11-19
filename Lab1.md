@@ -210,3 +210,5 @@ As far as you can see, user's group attribute passed to the applicaion in JWT to
 <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image37.png" width="700" /> 
 
 13. Analize your JWT token and check what you can see when you logged in as administrator.
+
+14. To explore further components have been built above, use AWS console to navigate to Cognito User pools, API Gateway deployments and Lambda functions.

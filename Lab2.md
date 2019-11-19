@@ -44,50 +44,50 @@ Now when we a new group and user Okta configured, we need to change our applicat
 
 <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image4.png" width="700" /> 
 
-4. Open amazon-cognito-example-for-external-idp/lambda/api/src/tests/app.test.ts.
+5. Open amazon-cognito-example-for-external-idp/lambda/api/src/tests/app.test.ts.
 
-5. Add a constant for readonlyGroupName.
+6. Add a constant for readonlyGroupName.
 
 <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image10.png" width="700" /> 
 
-5. Add readonlyGroupName to the mocApp.
+7. Add readonlyGroupName to the mocApp.
 
 <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image11.png" width="700" /> 
 
-5. Go back to the app.ts and add readonlyGroupName to the authorizationMiddleware options:
+8. Go back to the app.ts and add readonlyGroupName to the authorizationMiddleware options:
 
 <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image5.png" width="700" /> 
 
-6. Go back to the app.ts and add readonlyGroupName to the authorizationMiddleware options:
+9. Go back to the app.ts and add readonlyGroupName to the authorizationMiddleware options:
 
 <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image5.png" width="700" /> 
 
-7. To allow read-only user to list all pets, edit /pets call as following:
+10. To allow read-only user to list all pets, edit /pets call as following:
 
 <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image6.png" width="700" /> 
 
-8. To allow read-only user to retrieve any pet, edit /pets/:petId call as following:
+11. To allow read-only user to retrieve any pet, edit /pets/:petId call as following:
 
 <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image7.png" width="700" /> 
 
 Next changes depend on the business logic we'd like to implement here. Below we'll prohibit any changes if user belongs to the read-only group, even it belongs to any other group.
 
-9. Prohibit creating a new pet for read-only group:
+12. Prohibit creating a new pet for read-only group:
 
 <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image12.png" width="700" /> 
 
-9. Prohibit put to /pets/:petId for read-only group:
+13. Prohibit put to /pets/:petId for read-only group:
 
 <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image8.png" width="700" /> 
 
-10. Prohibit deleting a pet:
+14. Prohibit deleting a pet:
 
 <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image9.png" width="700" /> 
 
-11. Go to File->Save All menu to save your changes.
-12. Go to bash tab in your environment and redeploy your application:
+15. Go to File->Save All menu to save your changes.
+16. Go to bash tab in your environment and redeploy your application:
 ```
 ./deploy.sh
 ```
 
-13. After your re-deployed your applcation, close and open Chrome incognito window and test your application is working correctly by login with petappreadonly1@example.com and trying to list or view pets and to create or delete them.
+17. After your re-deployed your applcation, close and open Chrome incognito window and test your application is working correctly by login with petappreadonly1@example.com and trying to list or view pets and to create or delete them.
