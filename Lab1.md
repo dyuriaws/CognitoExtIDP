@@ -14,42 +14,45 @@ The git repository <a href="https://github.com/aws-samples/amazon-cognito-exampl
 
 1.  In the JAM web console select the **Open AWS Console** button in the top right.  This will open a new browser tab to the AWS console.
 
-2.  In the **Find Services** search area type in ```cloud9```
+2.  In the **Find Services** search area type in ```cloud9``` and select the **Cloud9** console.
 
 3.  Once you are in the **AWS Cloud9** console you will see a list of your environments.  There should only be one and it should start with **mod_module-1..**.  Select the **Open IDE** button for this environment.  This will open a new tab with the **AWS Cloud9** environment.  You will be greeted with a Cloud9 Welcome page you can close it if you would like.  At the bottom of the console is a SSH session we will be using throughout the task.
+
     **Note:** Feel free to expand this window with the little icon to the icon on the left of the "X" which is to close out the SSH session.  You can also pull the bar up to display more of the SSH session.  If you would like more information about the AWS Cloud9 console please review the following documentation: <a href="https://docs.aws.amazon.com/cloud9/latest/user-guide/tour-ide.html" rel="noopener noreferrer" target="_blank">Tour the IDE</a>
 
-3.  Retrieve your AWS account ID and copy/save it for use later:
+4.  Retrieve your AWS account ID and copy/save it for use later:
     ```
     aws sts get-caller-identity --query Account --output text
     ```
 
-4.  Change directory to amazon-cognito-example-for-external-idp and copy env template to env.sh
+5.  Change directory to amazon-cognito-example-for-external-idp and copy env template to env.sh
     ```
     cd amazon-cognito-example-for-external-idp
     cp env.sh.template env.sh
     ls
     ```
 
-5.  In the environment tree on the left side of the IDE expand **amazon-cognito-example-for-external-idp** (the full name may be cut off in the tree view), by clicking the little arrow next to the folder name or double clicking on the folder name.  Then double click on **env.sh** in the environment tree.  This should open the file in a tab in the top section of the IDE.  You should now be able to view and edit the code in this file.
+6.  In the environment tree on the left side of the IDE expand **amazon-cognito-example-for-external-idp** (the full name may be cut off in the tree view), by clicking the little arrow next to the folder name or double clicking on the folder name.  Then double click on **env.sh** in the environment tree.  This should open the file in a tab in the top section of the IDE.  You should now be able to view and edit the code in this file.
 
     <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image1.png" width="700" />
 
-4.  Replace **$(aws configure get account)** with the account ID from the step 1 above.
+7.  Replace **$(aws configure get account)** with the account ID from the step 1 above.
 
-5.  Replace **$(aws configure get region)** with **us-west-2** which is your current region.
+8.  Replace **$(aws configure get region)** with **us-west-2** which is your current region.
 
-6.  Save the env.sh file:
+9.  Save the env.sh file:
 
     <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image10.png" width="700" />
 
-7.  Switch back to the SSH tab below which should be labeled something like **bash - "ip-"...** in your Cloud9 environment in the bottom section of the IDE and run install.sh
+10. Switch back to the SSH tab below which should be labeled something like **bash - "ip-"...** in your Cloud9 environment in the bottom section of the IDE and run install.sh
+
     **Note:** You may see more than 1 bash session below, which is okay, just be sure you are in the correct working directory before running the command below: **~/environment/amazon-cognito-example-for-external-idp**
+
     ```
     ./install.sh
     ```
 
-8.  When it completes, go to env.sh tab
+11. When it completes, go to env.sh tab
     -   comment out the following by adding a "#" sign to begining of the line.  It should look like the following:
         ```
         #export APP_URL=http://localhost:3000
@@ -63,14 +66,14 @@ The git repository <a href="https://github.com/aws-samples/amazon-cognito-exampl
 
     <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image11.png" width="700" />
 
-9.  Save env.sh file and run demploy.sh:
+12. Save env.sh file and run demploy.sh:
     ```
     ./deploy.sh
     ```
 
-10. Accept proposed changes in the "Do you wish to deploy these changes (y/n)?" question by typing "y" and enter.
+13. Accept proposed changes in the "Do you wish to deploy these changes (y/n)?" question by typing "y" and enter.
 
-11. Note the stack output. You will need it for your IdP configruation:
+14. Note the stack output. You will need it for your IdP configruation:
 
     <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image12.png" width="700" />
 
@@ -85,10 +88,12 @@ Now we need to configure our IdP.
 1.  Sign up for a developer account on [Okta](https://developer.okta.com/) using your corporate credentials.
 
 2.  Activate your account and sign into your Okta domain *stated in the email*.
+
     **Note 1:** Be sure to check your spam folder to make sure it didn't get flagged incorrectly.
+
     **Note 2:** If you close this tab and/or would like to login again you will need to navigate to the **Your Okta domain:** which can be found in your email and login with the credentials you defined when setting up the account.  The URL is also found in the top right of the Okta dashboard when you login, **Org URL:**.
 
-3.  If you are prompted with a welcome screen go to the Admin dashboard by clicking on the **Admin** button on the top-right corner of the page.
+3.  If you are prompted with a welcome screen go to the Admin dashboard by clicking on the **Admin** button on the top-right corner of the page and select **Dashboard** from the top menu ribbon.
 
 4.  In the Admin dashboard, go to the top-left of the page click on **Developer Console** and change it to **Classic UI**.
 
@@ -113,10 +118,12 @@ Now we need to configure our IdP.
 9.  The next page describes the SAML settings for your app.
 
 10. The **Single sign on URL** will be your Cognito user pool App Integration domain with */saml2/idpresponse* appended. You can find it in the deploy.sh output value for "Single sign on URL / Assertion Consumer Service (ACS) URL".
-    *   Example:
-        ```
-        https://yourDomainPrefix.auth.yourRegion.amazoncognito.com/saml2/idpresponse
-        ```
+
+    Example:
+    ```
+    https://yourDomainPrefix.auth.yourRegion.amazoncognito.com/saml2/idpresponse
+    ```
+
 11. Make sure the **Use this for Recipient URL and Destination URL** box is checked.
 
 12. For the **Audience URI (SP Entity ID)**, enter the urn for your Cognito user pool. This is the value of deploy.sh "Audience URI (SP Entity ID)".
@@ -133,7 +140,7 @@ Now we need to configure our IdP.
 
 17. Under Group Attribute Statements, add the following:
 
-    ![app-attrib-grps](./content/lab1/media/app-attribe-grps.png)
+    ![app-attrib-grps](./content/lab1/media/app-attrib-grps.png)
 
     ![SAML Settings](https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/saml-settings.png)
 
