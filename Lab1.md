@@ -34,7 +34,7 @@ The git repository <a href="https://github.com/aws-samples/amazon-cognito-exampl
 
 6.  In the environment tree on the left side of the IDE expand **amazon-cognito-example-for-external-idp** (the full name may be cut off in the tree view), by clicking the little arrow next to the folder name or double clicking on the folder name.  Then double click on **env.sh** in the environment tree.  This should open the file in a tab in the top section of the IDE.  You should now be able to view and edit the code in this file.
 
-    <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image1.png" width="700" />
+    ![c9-tree](./content/lab1/media/c9-tree.png)
 
 7.  Replace **$(aws configure get account)** with the account ID from the step 1 above.
 
