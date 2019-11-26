@@ -121,7 +121,7 @@ Now we need to configure our IdP.
 
     Example:
     ```
-    https://yourDomainPrefix.auth.yourRegion.amazoncognito.com/saml2/idpresponse
+    https://<yourDomainPrefix>.auth.<yourRegion>.amazoncognito.com/saml2/idpresponse
     ```
 
 11. Make sure the **Use this for Recipient URL and Destination URL** box is checked.
