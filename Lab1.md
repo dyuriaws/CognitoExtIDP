@@ -194,20 +194,23 @@ Now when we have Okta configured, we need to configure Cognito user pool SAML fe
 
     <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image16.png" width="700" />
 
+3.  You should see a list of  user pools.  There should be one which starts with **ExternalIdPDemoPool...**.  Select the only one in the list of **Your User Pools**.
+
 3.  Click “SAML”, select AWS SSO metadata file, saved above, assign the name for your identity provider and click “Create Provider”:
 
     <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image17.png" width="700" />
 
 4.  Go to “Attributes Mapping”, choose “SAML” tab and choose your okta identity provider you just created.
 
-5.  Add attributes mapping “groups” and choose “custom:groups” from the drop-down list as below.
-SAML attribute “groups” will be included in the SAML assertion as result of the Attributes Mapping configuration in the step 10 above. The drop-down list contains your Cognito User Pool attributes. If your user pool has additional required attributes, you need to configure them to be included in the SAML assertion on AWS-SSO side as in step 8 above, then add them to the attribute mapping here.
+5.  Click **Add SAML attribute** Add attributes mapping “groups” and choose “custom:groups” from the drop-down list as below.
+
+    SAML attribute “groups” will be included in the SAML assertion as result of the Attributes Mapping configuration in the step 2.16 & step 2.17 above. The drop-down list contains your Cognito User Pool attributes. If your user pool has additional required attributes, you need to configure them to be included in the SAML assertion on AWS-SSO side as in step 8 above, then add them to the attribute mapping here.
 
 6.  Click “Save Changes”.
 
     <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image24.png" width="700" />
 
-7.  Go to App client settings in the Cognito console, choose your application client and update Enabled Identity Providers to Okta. Click Save changes:
+7.  Go to **App client settings** in the Cognito console, update Enabled Identity Providers to Okta. Deselect "Cognito User Pool", then click **Save changes**:
 
     <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image26.png" width="700" />
 
@@ -218,12 +221,15 @@ Now let's test is all together.
 In your browser, open PetAppAuthDemo UI. The value of "appUrl" in the deploy.sh output is your application UI url.
 
 1.  Open Chrome browser incognito window, right click to open developers tool, open a networking tab in developers tools and then navigate to the "appUrl"
+
 2.  Signle Sign On”:
 
     <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image25.png" width="700" />
 
 3.  Click on "okta" in "Sign in with your corporate ID" window.
+
 4.  Enter credentials for petappuser1@example.com. Answer all questions related to the first time Okta login.
+
 5.  User getting a SAML assertion from Okta, user will be redirected back to Cognito and will submit this SAML assertion to Cognito saml2/idpresponse endpoint:
 
     <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image28.png" width="700" />
@@ -242,11 +248,11 @@ In your browser, open PetAppAuthDemo UI. The value of "appUrl" in the deploy.sh 
 
     <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image33.png" width="700" />
 
-9.  You can look at the content of your JWT token by navigating to <https://hwt.io> , copy and paste your authorization header into Encoded form:
+9.  You can look at the content of your JWT token by navigating to <https://jwt.io> , copy and paste your authorization header into Encoded form:
 
     <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image34.png" width="700" />
 
-As far as you can see, user's group attribute passed to the applicaion in JWT token.
+    As far as you can see, user's group attribute passed to the applicaion in JWT token.
 
 10. When you logged to the application, you can see that you're a member of pet-app-users, where you can create a new pet and see only the pets you own.
 
@@ -254,7 +260,7 @@ As far as you can see, user's group attribute passed to the applicaion in JWT to
 
     <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image27.png" width="700" />
 
-12. Log out from the application and sign in with petappadmin1@example.com user:
+12. Close the incognito browser window, open a new incognito/private brower session, goto the AppUrl again, but now sign in with petappadmin1@example.com user:
 
     <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image37.png" width="700" />
 
