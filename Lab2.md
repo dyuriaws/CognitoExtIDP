@@ -6,9 +6,7 @@ In this task you will create a new group in Okta directory and will modify your 
 
 ### Step 1: Create new Okta group.
 
-1.  Sign up for a developer account on [Okta](https://developer.okta.com/) using your corporate credentials.
-
-2.  Activate your account and sign into your Okta domain *stated in the email*.
+1.  Login to your Okta developer url which is found in the Okta Developer Activation Email from the previous task.
 
 3.  Go to the Admin dashboard by clicking on the **Admin** button on the top-right corner of the page.
 
@@ -24,11 +22,11 @@ In this task you will create a new group in Okta directory and will modify your 
 
     <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image1.png" width="700" />
 
-7.  Go to the Directory -> People and click Add People:
+7.  Go to the Directory -> People and click Add Person:
 
     <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image21.png" width="700" />
 
-8.  Create a new user, petappreadonly1@example.com that belongs to pet-app-readonly group:
+8.  Create a new user, petappreadonly1@example.com that belongs to pet-app-readonly group and set password by admin:
 
     <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image2.png" width="700" />
 
@@ -48,7 +46,7 @@ In this task you will create a new group in Okta directory and will modify your 
 
     <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image4.png" width="700" />
 
-5.  Open amazon-cognito-example-for-external-idp/lambda/api/src/tests/app.test.ts.
+5.  Open amazon-cognito-example-for-external-idp/lambda/api/tests/app.test.ts.
 
 6.  Add a constant for readonlyGroupName.
 
@@ -59,10 +57,6 @@ In this task you will create a new group in Okta directory and will modify your 
     <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image11.png" width="700" />
 
 8.  Go back to the app.ts and add readonlyGroupName to the authorizationMiddleware options:
-
-    <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image5.png" width="700" />
-
-9.  Go back to the app.ts and add readonlyGroupName to the authorizationMiddleware options:
 
     <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image5.png" width="700" />
 
@@ -90,7 +84,7 @@ In this task you will create a new group in Okta directory and will modify your 
 
 15. Go to File->Save All menu to save your changes.
 
-16. Go to bash tab in your environment and redeploy your application:
+16. Go to bash tab in your environment and redeploy your application.  Be sure you are in the following working directory **~/environment/amazon-cognito-example-for-external-idp**
 ```
 ./deploy.sh
 ```
