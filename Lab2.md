@@ -2,89 +2,94 @@
 Task 2 -- Create a read-only role
 =================================================
 
-In this task you will create a new group in Okta directory and will modify your app to have a read-ony role that will allow users that assigned to that Okta directly group to see pets owned by all users but not to be able to modify them. 
+In this task you will create a new group in Okta directory and will modify your app to have a read-ony role that will allow users that assigned to that Okta directly group to see pets owned by all users but not to be able to modify them.
 
 ### Step 1: Create new Okta group.
 
-1. Sign up for a developer account on [Okta](https://developer.okta.com/) using your corporate credentials.
-2. Activate your account and sign into your Okta domain *stated in the email*.
-3. Go to the Admin dashboard by clicking on the **Admin** button on the top-right corner of the page.
-4. In the Admin dashboard, go to the top-left of the page where it says **Developer Console** and change it to **Classic UI**.
+1.  Sign up for a developer account on [Okta](https://developer.okta.com/) using your corporate credentials.
 
-![Console Page](https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/dev-classicUI.png)
+2.  Activate your account and sign into your Okta domain *stated in the email*.
 
-5. In the Okta portal go to the Directory -> Groups and click Add Group:
+3.  Go to the Admin dashboard by clicking on the **Admin** button on the top-right corner of the page.
 
-<img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image21.png" width="700" /> 
+4.  In the Admin dashboard, go to the top-left of the page where it says **Developer Console** and change it to **Classic UI**.
 
-6. Create a new groups, pet-app-readonly :
+    ![Console Page](https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/dev-classicUI.png)
 
-<img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image1.png" width="700" /> 
+5.  In the Okta portal go to the Directory -> Groups and click Add Group:
 
-7. Go to the Directory -> People and click Add People:
+    <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image21.png" width="700" />
 
-<img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image21.png" width="700" /> 
+6.  Create a new groups, pet-app-readonly :
 
-8. Create a new user, petappreadonly1@example.com that belongs to pet-app-readonly group:
+    <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image1.png" width="700" />
 
-<img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image2.png" width="700" /> 
+7.  Go to the Directory -> People and click Add People:
 
-Now when we a new group and user Okta configured, we need to change our application. Please note that we don't have to change anything in Cognito or API Gateway.
+    <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image21.png" width="700" />
+
+8.  Create a new user, petappreadonly1@example.com that belongs to pet-app-readonly group:
+
+    <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image2.png" width="700" />
+
+    Now when we a new group and user Okta configured, we need to change our application. Please note that we don't have to change anything in Cognito or API Gateway.
 
 ### Step 2: Updating the application code
 
-1. Go to Cloud9 environment, find an open amazon-cognito-example-for-external-idp/lambda/api/src/app.ts file.
-2. Add readonlyGroupName to AppOptions as below:
+1.  Go to Cloud9 environment, find an open amazon-cognito-example-for-external-idp/lambda/api/src/app.ts file.
 
-<img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image3.png" width="700" /> 
+2.  Add readonlyGroupName to AppOptions as below:
 
-3. Open amazon-cognito-example-for-external-idp/lambda/api/src/expressApp.ts.
+    <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image3.png" width="700" />
 
-4. Assign readonlyGroupName value to the App:
+3.  Open amazon-cognito-example-for-external-idp/lambda/api/src/expressApp.ts.
 
-<img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image4.png" width="700" /> 
+4.  Assign readonlyGroupName value to the App:
 
-5. Open amazon-cognito-example-for-external-idp/lambda/api/src/tests/app.test.ts.
+    <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image4.png" width="700" />
 
-6. Add a constant for readonlyGroupName.
+5.  Open amazon-cognito-example-for-external-idp/lambda/api/src/tests/app.test.ts.
 
-<img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image10.png" width="700" /> 
+6.  Add a constant for readonlyGroupName.
 
-7. Add readonlyGroupName to the mocApp.
+    <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image10.png" width="700" />
 
-<img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image11.png" width="700" /> 
+7.  Add readonlyGroupName to the mocApp.
 
-8. Go back to the app.ts and add readonlyGroupName to the authorizationMiddleware options:
+    <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image11.png" width="700" />
 
-<img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image5.png" width="700" /> 
+8.  Go back to the app.ts and add readonlyGroupName to the authorizationMiddleware options:
 
-9. Go back to the app.ts and add readonlyGroupName to the authorizationMiddleware options:
+    <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image5.png" width="700" />
 
-<img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image5.png" width="700" /> 
+9.  Go back to the app.ts and add readonlyGroupName to the authorizationMiddleware options:
+
+    <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image5.png" width="700" />
 
 10. To allow read-only user to list all pets, edit /pets call as following:
 
-<img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image6.png" width="700" /> 
+    <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image6.png" width="700" />
 
 11. To allow read-only user to retrieve any pet, edit /pets/:petId call as following:
 
-<img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image7.png" width="700" /> 
+    <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image7.png" width="700" />
 
-Next changes depend on the business logic we'd like to implement here. Below we'll prohibit any changes if user belongs to the read-only group, even it belongs to any other group.
+    Next changes depend on the business logic we'd like to implement here. Below we'll prohibit any changes if user belongs to the read-only group, even it belongs to any other group.
 
 12. Prohibit creating a new pet for read-only group:
 
-<img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image12.png" width="700" /> 
+    <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image12.png" width="700" />
 
 13. Prohibit put to /pets/:petId for read-only group:
 
-<img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image8.png" width="700" /> 
+    <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image8.png" width="700" />
 
 14. Prohibit deleting a pet:
 
-<img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image9.png" width="700" /> 
+    <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab2/media/image9.png" width="700" />
 
 15. Go to File->Save All menu to save your changes.
+
 16. Go to bash tab in your environment and redeploy your application:
 ```
 ./deploy.sh
