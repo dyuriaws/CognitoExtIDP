@@ -34,7 +34,7 @@ The git repository <a href="https://github.com/aws-samples/amazon-cognito-exampl
 
 6.  In the environment tree on the left side of the IDE expand **amazon-cognito-example-for-external-idp** (the full name may be cut off in the tree view), by clicking the little arrow next to the folder name or double clicking on the folder name.  Then double click on **env.sh** in the environment tree.  This should open the file in a tab in the top section of the IDE.  You should now be able to view and edit the code in this file.
 
-    ![c9-tree](./content/lab1/media/c9-tree.png)
+    ![c9-tree](https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/content/lab1/media/c9-tree.png)
 
 7.  Replace **$(aws configure get account)** with the account ID from the step 1 above.
 
@@ -136,11 +136,11 @@ Now we need to configure our IdP.
 
 16. Under **Attribute Statements**, configure the following:
 
-    ![app-attrib-user](./content/lab1/media/app-attrib-user.png)
+    ![app-attrib-user](https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/content/lab1/media/app-attrib-user.png)
 
 17. Under Group Attribute Statements, add the following:
 
-    ![app-attrib-grps](./content/lab1/media/app-attrib-grps.png)
+    ![app-attrib-grps](https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/content/lab1/media/app-attrib-grps.png)
 
     ![SAML Settings](https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/saml-settings.png)
 
