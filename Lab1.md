@@ -1,4 +1,3 @@
-
 Task 1 -- Deploy PetAppAuthDemoApp and configure Cognito to work with Okta as an external IdP
 =================================================
 
@@ -10,7 +9,7 @@ Chrome Browser (recommended) or Firefox Browser
 To perform this task, login to AWS account console, choose Cloud9 as your service and open pre-created Cloud9 environment.
 Your Cloud9 environment may not be seen under "You environments" but can be found under "Account environments".
 
-The git repository <a href="https://github.com/aws-samples/amazon-cognito-example-for-external-idp" rel="noopener noreferrer" target="_blank">https://github.com/aws-samples/amazon-cognito-example-for-external-idp</a> already cloned to your Cloud9 environment.
+The git repository <a href="https://github.com/aws-samples/amazon-cognito-example-for-external-idp" rel="nofollow">https://github.com/aws-samples/amazon-cognito-example-for-external-idp</a> already cloned to your Cloud9 environment.
 
 1.  In the JAM web console select the **Open AWS Console** button in the top right.  This will open a new browser tab to the AWS console.
 
@@ -18,7 +17,7 @@ The git repository <a href="https://github.com/aws-samples/amazon-cognito-exampl
 
 3.  Once you are in the **AWS Cloud9** console you will see a list of your environments.  There should only be one and it should start with **mod_module-1..**.  Select the **Open IDE** button for this environment.  This will open a new tab with the **AWS Cloud9** environment.  You will be greeted with a Cloud9 Welcome page you can close it if you would like.  At the bottom of the console is a SSH session we will be using throughout the task.
 
-    **Note:** Feel free to expand this window with the little icon to the icon on the left of the "X" which is to close out the SSH session.  You can also pull the bar up to display more of the SSH session.  If you would like more information about the AWS Cloud9 console please review the following documentation: <a href="https://docs.aws.amazon.com/cloud9/latest/user-guide/tour-ide.html" rel="noopener noreferrer" target="_blank">Tour the IDE</a>
+    **Note:** Feel free to expand this window with the little icon to the icon on the left of the "X" which is to close out the SSH session.  You can also pull the bar up to display more of the SSH session.  If you would like more information about the AWS Cloud9 console please review the following documentation: <a href="https://docs.aws.amazon.com/cloud9/latest/user-guide/tour-ide.html" rel="nofollow">Tour the IDE</a>
 
 4.  Retrieve your AWS account ID and copy/save it for use later:
     ```
@@ -34,7 +33,7 @@ The git repository <a href="https://github.com/aws-samples/amazon-cognito-exampl
 
 6.  In the environment tree on the left side of the IDE expand **amazon-cognito-example-for-external-idp** (the full name may be cut off in the tree view), by clicking the little arrow next to the folder name or double clicking on the folder name.  Then double click on **env.sh** in the environment tree.  This should open the file in a tab in the top section of the IDE.  You should now be able to view and edit the code in this file.
 
-    ![c9-tree](https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/content/lab1/media/c9-tree.png)
+    ![c9-tree](https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/c9-tree.png)
 
 7.  Replace **$(aws configure get account)** with the account ID from the step 1 above.
 
@@ -121,7 +120,7 @@ Now we need to configure our IdP.
 
     Example:
     ```
-    https://<yourDomainPrefix>.auth.<yourRegion>.amazoncognito.com/saml2/idpresponse
+    https://.auth..amazoncognito.com/saml2/idpresponse
     ```
 
 11. Make sure the **Use this for Recipient URL and Destination URL** box is checked.
@@ -136,11 +135,11 @@ Now we need to configure our IdP.
 
 16. Under **Attribute Statements**, configure the following:
 
-    ![app-attrib-user](https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/content/lab1/media/app-attrib-user.png)
+    ![app-attrib-user](https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/app-attrib-user.png)
 
 17. Under Group Attribute Statements, add the following:
 
-    ![app-attrib-grps](https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/content/lab1/media/app-attrib-grps.png)
+    ![app-attrib-grps](https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/app-attrib-grps.png)
 
     ![SAML Settings](https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/saml-settings.png)
 
@@ -248,7 +247,7 @@ In your browser, open PetAppAuthDemo UI. The value of "appUrl" in the deploy.sh 
 
     <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image33.png" width="700" />
 
-9.  You can look at the content of your JWT token by navigating to <https://jwt.io> , copy and paste your authorization header into Encoded form:
+9.  You can look at the content of your JWT token by navigating to  , copy and paste your authorization header into Encoded form:
 
     <img src="https://aws-jam-challenge-resources.s3.amazonaws.com/Cognito-Fine-Grained-Auth-External-IdP/lab1/media/image34.png" width="700" />
 
